@@ -21,7 +21,7 @@ const store = new mongodbsession({
 
 //middlewares
 const corsOptions = {
-  origin: "*", // Replace with your frontend's origin
+  origin: "https://konvoy-frontend.vercel.app", // Replace with your frontend's origin
   optionsSuccessStatus: 200,
   credentials: true,
 };
