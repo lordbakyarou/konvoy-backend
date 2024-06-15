@@ -42,6 +42,10 @@ app.use(
   })
 );
 
+app.get("/check", (req, res) => {
+  return res.send("WOrking");
+});
+
 app.use("/auth", AuthRouter);
 app.use("/todo", isAuth, TodoRouter);
 
