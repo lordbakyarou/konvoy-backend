@@ -21,7 +21,7 @@ const store = new mongodbsession({
 
 //middlewares
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN, // Replace with your frontend's origin
+  origin: "*", // Replace with your frontend's origin
   optionsSuccessStatus: 200,
   credentials: true,
 };
