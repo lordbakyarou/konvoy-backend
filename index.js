@@ -21,7 +21,7 @@ const store = new mongodbsession({
 
 //middlewares
 const corsOptions = {
-  origin: "https://konvoy-frontend.vercel.app", // Replace with your frontend's origin
+  origin: process.env.CORS_ORIGIN, // Replace with your frontend's origin
   optionsSuccessStatus: 200,
   credentials: true,
 };
@@ -36,7 +36,7 @@ app.use(
     store: store,
     cookie: {
       httpOnly: true,
-      secure: false, // Set to true if using https in production
+      secure: process.env.NODE_ENV === "production", // Set to true if using https in production
       sameSite: "lax", // 'lax' or 'strict' or 'none' depending on your requirements
     },
   })
