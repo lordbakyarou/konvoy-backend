@@ -35,6 +35,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    proxy: true,
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using https in production
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
