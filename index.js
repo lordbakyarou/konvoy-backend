@@ -28,6 +28,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
 app.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -37,7 +38,8 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Set to true if using https in production
-      sameSite: "lax", // 'lax' or 'strict' or 'none' depending on your requirements
+      maxAge: 1000 * 60 * 60 * 48,
+      sameSite: "none",
     },
   })
 );
