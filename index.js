@@ -29,16 +29,18 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.set("trust proxy", 1);
 app.use(
   session({
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     store: store,
-    name: "MyCoolWebAppCookieName",
-    proxy: true, // if you do SSL outside of node.
-    cookie: { secure: true, sameSite: "none" },
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Set to true if using https in production
+      maxAge: 1000 * 60 * 60 * 48,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    },
   })
 );
 
