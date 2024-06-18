@@ -35,6 +35,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Set to true if using https in production
