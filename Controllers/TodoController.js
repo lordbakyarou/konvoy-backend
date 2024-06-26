@@ -55,6 +55,7 @@ TodoRouter.get("/getAllTodo", async (req, res) => {
 
   try {
     const todos = await getAllTodo({ userId });
+    console.log(todos.message);
     return res.status(todos.status).json(todos.message);
   } catch (error) {
     return res.status(error.status).json(error.message);

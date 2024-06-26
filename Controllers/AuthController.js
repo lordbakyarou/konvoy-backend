@@ -66,7 +66,7 @@ AuthRouter.post("/login", async (req, res) => {
       name: userData.name,
     };
 
-    return res.status(200).json("User loggedin");
+    return res.status(200).json(userData);
   } catch (error) {
     return res.status(500).json(error);
   }
