@@ -23,29 +23,40 @@ const store = new mongodbsession({
 //middlewares
 
 // Middleware to allow any origin
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    return res.status(200).json({});
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   if (req.method === "OPTIONS") {
+//     return res.status(200).json({});
+//   }
+//   next();
+// });
 
-const corsOptions = {
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
-  origin: process.env.CORS_ORIGIN, // Replace with your frontend's origin
-  optionsSuccessStatus: 200,
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN, // Your frontend URL
+    credentials: true, // Allow credentials (cookies, headers)
+  })
+);
 
 app.use(express.json());
+
+// app.use(
+//   session({
+//     secret: process.env.SECRET_KEY, // Replace with your secret
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       httpOnly: true,
+//       secure: false, // Set to true if using HTTPS in production
+//       sameSite: "lax", // Adjust based on your needs (None, Strict, or Lax)
+//     },
+//   })
+// );
 
 app.use(
   session({
